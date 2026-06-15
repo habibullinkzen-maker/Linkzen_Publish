@@ -4,7 +4,7 @@ import {
   Cpu, Code, Globe, Shield, Send, CheckCircle2,
   Menu, X, ShieldCheck, Award, CreditCard, FileText,
   Utensils, Receipt, Pill, GraduationCap, ShoppingBag, Check,
-  Smartphone, Download
+  Smartphone, Download, MessageSquare, Ticket, Banknote
 } from 'lucide-react';
 import InteractiveDemo from './components/InteractiveDemo';
 import TechMarquee from './components/TechMarquee';
@@ -94,7 +94,8 @@ const products = [
     tagline: 'DineIn Master',
     desc: 'Optimize restaurant queues, kitchen tickets, tables booking, and inventory controls in a unified system.',
     features: ['Real-time KDS (Kitchen Display)', 'Multi-table management & billing', 'Raw ingredient inventory logs', 'Waiter order app sync'],
-    theme: 'cyan'
+    theme: 'cyan',
+    brochure: '/Restaurant-ERP-Brochure.pdf'
   },
   {
     id: 'billing',
@@ -102,7 +103,8 @@ const products = [
     tagline: 'Financify POS',
     desc: 'Streamlined Point-of-Sale software designed for fast invoicing, automatic tax calculation, and transaction ledgers.',
     features: ['1-click invoice generation', 'Automatic GST & VAT calculations', 'Daily ledger analytics', 'Payment gateway integration'],
-    theme: 'purple'
+    theme: 'purple',
+    brochure: '/Billing-ERP-Brochure.pdf'
   },
   {
     id: 'pharmacy',
@@ -110,7 +112,8 @@ const products = [
     tagline: 'PharmaFlow',
     desc: 'Intelligent medicine stock database with auto-replenish alerts, drug interaction rules, and expiry tracking.',
     features: ['Live batch & stock level updates', 'Low stock triggers & auto-reorder', 'Expiry date tracking system', 'Prescription digital archiving'],
-    theme: 'cyan'
+    theme: 'cyan',
+    brochure: '/Pharmacy-ERP-Brochure.pdf'
   },
   {
     id: 'school',
@@ -122,6 +125,15 @@ const products = [
     brochure: '/School-ERP-Brochure.pdf'
   },
   {
+    id: 'microfinance',
+    title: 'Micro Finance ERP',
+    tagline: 'LoanFlow',
+    desc: 'Complete micro-finance and loan management platform with borrower tracking, EMI scheduling, and collection analytics.',
+    features: ['Borrower profile & KYC management', 'EMI schedule & auto-reminders', 'Collection agent tracking', 'Loan disbursement ledger'],
+    theme: 'cyan',
+    brochure: '/MicroFinance-Brochure.pdf'
+  },
+  {
     id: 'webdev',
     title: 'Web Development',
     tagline: 'WebCraft Engine',
@@ -129,14 +141,14 @@ const products = [
     features: ['SEO-friendly clean semantic code', 'Fully responsive mobile-first views', 'Headless CMS & database sync', 'Blazing-fast page speed performance'],
     theme: 'purple'
   },
-
   {
     id: 'ecommerce',
     title: 'E-Commerce Software',
     tagline: 'CartEngine',
     desc: 'Complete digital storefront platform with functional shopping carts, dynamic stock updates, and a checkout manager.',
     features: ['High-speed product listings', 'Interactive shopping cart module', 'Secure checkout pipeline', 'Auto-generated invoice emails'],
-    theme: 'cyan'
+    theme: 'cyan',
+    brochure: '/ECommerce-Brochure.pdf'
   }
 ];
 
@@ -346,6 +358,7 @@ export default function App() {
                 if (id === 'webdev') return Code;
                 if (id === 'appdev') return Smartphone;
                 if (id === 'ecommerce') return ShoppingBag;
+                if (id === 'microfinance') return Banknote;
                 return Utensils;
               };
 
@@ -418,49 +431,121 @@ export default function App() {
 
 
 
-      {/* Research & Innovation Hub */}
-      <section className="research-section" id="research">
+
+      {/* Service Area Section */}
+      <section className="service-area-section" id="service-area">
         <div className="container">
-          <div className="research-banner bg-dark-glass">
-            <div className="research-text">
-              <span className="badge" style={{ background: 'rgba(155, 81, 224, 0.08)', border: '1px solid rgba(155, 81, 224, 0.25)', color: 'var(--secondary)' }}>
-                R&D Division
+          <div className="service-area-banner bg-dark-glass">
+            <div className="service-area-text">
+              <span className="badge" style={{ background: 'rgba(0, 242, 254, 0.08)', border: '1px solid rgba(0, 242, 254, 0.25)', color: 'var(--primary)', display: 'flex', alignItems: 'center', gap: '6px', width: 'fit-content' }}>
+                <Globe size={12} /> Service Area
               </span>
-              <h2>Scientific Approach to Enterprise Software</h2>
-              <p>
-                As a research center, we don't just build code — we optimize workflows. Our research focuses on minimizing point-of-sale latencies, optimizing warehouse layouts using automated algorithms, and creating responsive predictive algorithms for drug inventory.
+              <h2 className="service-area-heading">
+                Expanding Across<br />
+                <span className="text-gradient">Assam.</span>
+              </h2>
+              <p className="service-area-desc">
+                Delivering premium digital solutions to every corner of the state. Distance is just a number.
               </p>
-              <div className="research-pillars">
-                <div className="pillar-box bg-glass">
-                  <Cpu size={24} className="pillar-icon" />
-                  <h4>Predictive Stock</h4>
-                  <p>Smart alerts before shelf expiry and running out of supplies.</p>
-                </div>
-                <div className="pillar-box bg-glass">
-                  <Code size={24} className="pillar-icon" style={{ color: 'var(--secondary)' }} />
-                  <h4>Clean Architecture</h4>
-                  <p>Built using ultra-resilient micro-framework nodes for 99.9% uptime.</p>
-                </div>
-              </div>
             </div>
-            
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-              <div className="bg-glass" style={{ padding: '24px' }}>
-                <h4 style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '12px' }}><Globe size={18} className="text-gradient" /> Global Sync Pipelines</h4>
-                <p style={{ fontSize: '13px', lineHeight: '1.5' }}>
-                  Our system synchronizes multi-terminal sales invoices with localized state databases in under 100ms, facilitating reliable off-line operation for restaurants and pharmacies.
-                </p>
-              </div>
-              <div className="bg-glass" style={{ padding: '24px' }}>
-                <h4 style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '12px' }}><Shield size={18} style={{ color: 'var(--secondary)' }} /> Data Cryptography</h4>
-                <p style={{ fontSize: '13px', lineHeight: '1.5' }}>
-                  Student compliance portals and health prescription records are encrypted end-to-end using SHA-256 ledger protocols, strictly conforming to modern security policies.
-                </p>
+            <div className="service-area-cities">
+              <div className="cities-grid">
+                {['Barpeta', 'Goalpara', 'Dhubri', 'Kamrup', 'Guwahati', 'Baksa', 'Kokrajhar'].map((city) => (
+                  <span key={city} className="city-tag">
+                    <span className="city-dot" />
+                    {city}
+                  </span>
+                ))}
+                <span className="city-tag more-tag">
+                  <span style={{ fontSize: '12px', opacity: 0.6 }}>↔</span> More coming soon...
+                </span>
               </div>
             </div>
           </div>
         </div>
       </section>
+
+      {/* Support & Payment Section */}
+      <section className="support-payment-section" id="support">
+        <div className="container">
+
+          {/* We're Here to Help */}
+          <div className="support-header text-center">
+            <h2 className="support-title">We're Here to <span className="text-gradient">Help</span></h2>
+            <div className="support-title-line" />
+          </div>
+          <div className="support-cards-grid">
+            <a href="https://wa.me/916002552415" target="_blank" rel="noopener noreferrer" className="support-card bg-glass">
+              <div className="support-card-icon">
+                <MessageSquare size={26} />
+              </div>
+              <span className="support-card-label">Live Chat</span>
+            </a>
+            <a href="mailto:Linkzen@support.in" className="support-card bg-glass">
+              <div className="support-card-icon">
+                <Mail size={26} />
+              </div>
+              <span className="support-card-label">Email Support</span>
+            </a>
+            <a href="https://wa.me/916002552415" target="_blank" rel="noopener noreferrer" className="support-card bg-glass">
+              <div className="support-card-icon">
+                <WhatsAppIcon size={26} />
+              </div>
+              <span className="support-card-label">WhatsApp</span>
+            </a>
+            <a href="#contact" className="support-card bg-glass">
+              <div className="support-card-icon">
+                <Ticket size={26} />
+              </div>
+              <span className="support-card-label">Support Ticket</span>
+            </a>
+          </div>
+
+          {/* Flexible Payment Options */}
+          <div className="payment-header text-center">
+            <h2 className="payment-title"><span style={{ color: 'var(--text-primary)' }}>Flexible</span> <span className="text-gradient">Payment Options</span></h2>
+            <p className="payment-subtitle">Pay securely from anywhere in the world using our locally optimized and globally trusted payment gateways.</p>
+          </div>
+          <div className="payment-cards-grid">
+            <div className="payment-card">
+              <div className="payment-card-header">
+                <div className="payment-card-header-icon">
+                  <Globe size={18} />
+                </div>
+                <h4>International</h4>
+              </div>
+              <div className="payment-tags">
+                {['PayPal', 'Payoneer', 'Stripe', 'Wise'].map(p => <span key={p} className="payment-tag">{p}</span>)}
+              </div>
+            </div>
+            <div className="payment-card">
+              <div className="payment-card-header">
+                <div className="payment-card-header-icon">
+                  <CreditCard size={18} />
+                </div>
+                <h4>India</h4>
+              </div>
+              <div className="payment-tags">
+                {['Paytm', 'Razorpay', 'Cashfree', 'PhonePe', 'Amazon Pay', 'UPI'].map(p => <span key={p} className="payment-tag">{p}</span>)}
+              </div>
+            </div>
+            <div className="payment-card">
+              <div className="payment-card-header">
+                <div className="payment-card-header-icon">
+                  <CreditCard size={18} />
+                </div>
+                <h4>Card Networks</h4>
+              </div>
+              <div className="payment-tags">
+                {['Visa', 'Mastercard', 'American Express', 'RuPay'].map(p => <span key={p} className="payment-tag">{p}</span>)}
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+
 
       {/* Contact Section */}
       <section className="contact-section" id="contact">

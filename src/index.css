@@ -3661,37 +3661,67 @@ a {
   justify-content: center;
   color: #FFFFFF;
   text-decoration: none;
-  background: rgba(15, 20, 36, 0.6);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  border: none;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Individual branding colors on hover */
-.social-dock-btn.whatsapp:hover {
+/* Real brand colors always visible */
+.social-dock-btn.whatsapp {
   background: #25D366;
-  color: #06090F;
-  border-color: transparent;
-  box-shadow: 0 0 20px rgba(37, 211, 102, 0.4);
-  transform: translateY(-4px) scale(1.08);
+  color: #FFFFFF;
+  box-shadow: 0 4px 15px rgba(37, 211, 102, 0.35);
+}
+
+.social-dock-btn.instagram {
+  background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+  color: #FFFFFF;
+  box-shadow: 0 4px 15px rgba(214, 36, 159, 0.35);
+}
+
+.social-dock-btn.youtube {
+  background: #FF0000;
+  color: #FFFFFF;
+  box-shadow: 0 4px 15px rgba(255, 0, 0, 0.35);
+}
+
+.social-dock-btn.facebook {
+  background: #1877F2;
+  color: #FFFFFF;
+  box-shadow: 0 4px 15px rgba(24, 119, 242, 0.35);
+}
+
+.social-dock-btn.twitter {
+  background: #000000;
+  color: #FFFFFF;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+/* Hover: lift + stronger glow */
+.social-dock-btn.whatsapp:hover {
+  transform: translateY(-5px) scale(1.1);
+  box-shadow: 0 10px 30px rgba(37, 211, 102, 0.6);
 }
 
 .social-dock-btn.instagram:hover {
-  background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%);
-  color: #FFFFFF;
-  border-color: transparent;
-  box-shadow: 0 0 20px rgba(214, 36, 159, 0.4);
-  transform: translateY(-4px) scale(1.08);
+  transform: translateY(-5px) scale(1.1);
+  box-shadow: 0 10px 30px rgba(214, 36, 159, 0.6);
 }
 
 .social-dock-btn.youtube:hover {
-  background: #FF0000;
-  color: #FFFFFF;
-  border-color: transparent;
-  box-shadow: 0 0 20px rgba(255, 0, 0, 0.4);
-  transform: translateY(-4px) scale(1.08);
+  transform: translateY(-5px) scale(1.1);
+  box-shadow: 0 10px 30px rgba(255, 0, 0, 0.6);
+}
+
+.social-dock-btn.facebook:hover {
+  transform: translateY(-5px) scale(1.1);
+  box-shadow: 0 10px 30px rgba(24, 119, 242, 0.6);
+}
+
+.social-dock-btn.twitter:hover {
+  transform: translateY(-5px) scale(1.1);
+  box-shadow: 0 10px 30px rgba(255, 255, 255, 0.2);
 }
 
 /* Adjust dock position on smaller mobile screens */

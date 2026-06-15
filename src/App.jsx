@@ -4,7 +4,7 @@ import {
   Cpu, Code, Globe, Shield, Send, CheckCircle2,
   Menu, X, ShieldCheck, Award, CreditCard, FileText,
   Utensils, Receipt, Pill, GraduationCap, ShoppingBag, Check,
-  Smartphone
+  Smartphone, Download
 } from 'lucide-react';
 import InteractiveDemo from './components/InteractiveDemo';
 import TechMarquee from './components/TechMarquee';
@@ -118,7 +118,8 @@ const products = [
     tagline: 'EduSuite',
     desc: 'Empower schools and colleges with online enrollment, student records, fee collection systems, and attendance tracking.',
     features: ['Student roster & bio database', 'Interactive attendance console', 'Academic performance tracker', 'Fee due tracker with SMS alerts'],
-    theme: 'purple'
+    theme: 'purple',
+    brochure: '/School-ERP-Brochure.pdf'
   },
   {
     id: 'webdev',
@@ -389,6 +390,17 @@ export default function App() {
                         <ArrowUpRight size={16} />
                       </span>
                     </button>
+
+                    {prod.brochure && (
+                      <a
+                        href={prod.brochure}
+                        download
+                        className="btn-download-brochure"
+                      >
+                        <Download size={15} />
+                        <span>Download Brochure (PDF)</span>
+                      </a>
+                    )}
                   </div>
                 </div>
               );

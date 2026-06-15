@@ -609,6 +609,43 @@ a {
   transform: translate(6px, -6px) scale(1.1);
 }
 
+/* PDF Download Brochure Button */
+.btn-download-brochure {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 11px 20px;
+  margin-top: 10px;
+  border-radius: 12px;
+  border: 1.5px dashed rgba(155, 81, 224, 0.4);
+  background: rgba(155, 81, 224, 0.06);
+  color: var(--secondary);
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+}
+
+.btn-download-brochure:hover {
+  background: rgba(155, 81, 224, 0.14);
+  border-color: rgba(155, 81, 224, 0.75);
+  color: #E040FB;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(155, 81, 224, 0.2);
+}
+
+.btn-download-brochure svg {
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+}
+
+.btn-download-brochure:hover svg {
+  transform: translateY(2px);
+}
+
 /* Research & Innovation Hub */
 .research-section {
   padding: 80px 0;

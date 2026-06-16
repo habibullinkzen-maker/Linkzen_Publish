@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { 
   Phone, Mail, MapPin, ArrowRight, ArrowUpRight, 
   Cpu, Code, Globe, Shield, Send, CheckCircle2,
@@ -121,7 +121,7 @@ const products = [
     tagline: 'EduSuite',
     desc: 'Empower schools and colleges with online enrollment, student records, fee collection systems, and attendance tracking.',
     features: ['Student roster & bio database', 'Interactive attendance console', 'Academic performance tracker', 'Fee due tracker with SMS alerts'],
-    theme: 'purple',
+    theme: 'cyan',
     brochure: '/School-ERP-Brochure.pdf'
   },
   {
@@ -133,14 +133,7 @@ const products = [
     theme: 'cyan',
     brochure: '/MicroFinance-Brochure.pdf'
   },
-  {
-    id: 'webdev',
-    title: 'Web Development',
-    tagline: 'WebCraft Engine',
-    desc: 'Design and engineer ultra-fast, responsive corporate websites, high-converting landing pages, and complex custom web portals.',
-    features: ['SEO-friendly clean semantic code', 'Fully responsive mobile-first views', 'Headless CMS & database sync', 'Blazing-fast page speed performance'],
-    theme: 'purple'
-  },
+
   {
     id: 'ecommerce',
     title: 'E-Commerce Software',
@@ -185,6 +178,55 @@ export default function App() {
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [formData, setFormData] = useState({ name: '', email: '', subject: 'restaurant', message: '' });
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [activeNav, setActiveNav] = useState('home');
+  const [pillStyle, setPillStyle] = useState({ left: 0, width: 0 });
+  const navMenuRef = useRef(null);
+  const navItemRefs = useRef({});
+
+  const navItems = [
+    { id: 'home', label: 'Home', href: '#home' },
+    { id: 'products', label: 'Products', href: '#products' },
+    { id: 'demo', label: 'Live Demo Center', href: '#interactive-demo' },
+    { id: 'research', label: 'Research Hub', href: '#research' },
+    { id: 'contact', label: 'Contact', href: '#contact' },
+  ];
+
+  const movePillTo = (id) => {
+    const menuEl = navMenuRef.current;
+    const itemEl = navItemRefs.current[id];
+    if (!menuEl || !itemEl) return;
+    const menuRect = menuEl.getBoundingClientRect();
+    const itemRect = itemEl.getBoundingClientRect();
+    setPillStyle({
+      left: itemRect.left - menuRect.left,
+      width: itemRect.width,
+    });
+  };
+
+  useEffect(() => {
+    movePillTo(activeNav);
+  }, [activeNav]);
+
+  useEffect(() => {
+    const sections = ['home', 'products', 'interactive-demo', 'research', 'contact'];
+    const sectionToNav = { 'home': 'home', 'products': 'products', 'interactive-demo': 'demo', 'research': 'research', 'contact': 'contact' };
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const navId = sectionToNav[entry.target.id];
+            if (navId) setActiveNav(navId);
+          }
+        });
+      },
+      { threshold: 0.3 }
+    );
+    sections.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+    return () => observer.disconnect();
+  }, []);
 
   const handleScrollToDemo = (id) => {
     // We can trigger an event or state change, but since we import InteractiveDemo,
@@ -232,22 +274,32 @@ export default function App() {
           <div className="logo-wrapper">
             <img src="/Images/logo.png" className="logo-image" alt="Linkzen Logo" />
             <div className="text-left">
-              <span className="logo-text">LINKZEN</span>
-              <span style={{ display: 'block', fontSize: '9px', color: 'var(--text-muted)', letterSpacing: '1px', fontWeight: 'bold' }}>TECHNOLOGY & RESEARCH</span>
+              <span className="logo-text">LINKZEN TECHNOLOGY</span>
+              <span style={{ display: 'block', fontSize: '8px', color: 'var(--text-muted)', letterSpacing: '2px', fontWeight: '600', textTransform: 'uppercase', marginTop: '1px' }}>AND RESEARCH CENTRE</span>
             </div>
           </div>
 
           <nav>
-            <ul className="nav-menu">
-              <li><a href="#home" className="nav-link">Home</a></li>
-              <li><a href="#products" className="nav-link">Products</a></li>
-              <li><a href="#interactive-demo" className="nav-link">Live Demo Center</a></li>
-              <li><a href="#research" className="nav-link">Research Hub</a></li>
-              <li><a href="#contact" className="nav-link">Contact</a></li>
+            <ul className="nav-menu" ref={navMenuRef}>
+              {/* Sliding pill */}
+              <div className="nav-slider-pill" style={{ left: pillStyle.left, width: pillStyle.width }} />
+              {navItems.map(item => (
+                <li key={item.id} ref={el => navItemRefs.current[item.id] = el}>
+                  <a
+                    href={item.href}
+                    className={`nav-link${activeNav === item.id ? ' active' : ''}`}
+                    onClick={() => setActiveNav(item.id)}
+                    onMouseEnter={() => movePillTo(item.id)}
+                    onMouseLeave={() => movePillTo(activeNav)}
+                  >
+                    {item.label}
+                  </a>
+                </li>
+              ))}
             </ul>
           </nav>
 
-          <a href="#contact" className="contact-btn-nav">Get In Touch</a>
+          <a href="#contact" className="contact-btn-nav"><span>Get In Touch</span></a>
 
           <button 
             className="mobile-menu-toggle" 
@@ -715,8 +767,11 @@ export default function App() {
           <div className="footer-grid">
             <div className="footer-brand">
               <h4 style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '16px' }}>
-                <img src="/Images/logo.png" style={{ height: '30px' }} alt="" />
-                <span className="text-gradient">LINKZEN</span>
+                <img src="/Images/logo.png" style={{ height: '70px' }} alt="" />
+                <div style={{ display: 'flex', flexDirection: 'column' }}>
+                  <span className="text-gradient">LINKZEN TECHNOLOGY</span>
+                  <span style={{ fontSize: '9px', color: 'var(--text-muted)', letterSpacing: '2px', fontWeight: '600', textTransform: 'uppercase', marginTop: '2px' }}>AND RESEARCH CENTRE</span>
+                </div>
               </h4>
               <p>
                 Linkzen Technology And Research Centre is a leading-edge software engineering institute creating robust enterprise modules and systems designed for longevity and intelligence.
